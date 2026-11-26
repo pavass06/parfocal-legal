@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ParFocal — Installer</title>
+<meta name="description" content="Installer la bêta de ParFocal sur iPhone (TestFlight) ou Android (Google Play). Une application de lecture, un mot à la fois.">
+<link rel="canonical" href="https://parfocal.fr/app/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ParFocal">
+<meta property="og:title" content="ParFocal — Installer">
+<meta property="og:description" content="Installer la bêta de ParFocal sur iPhone (TestFlight) ou Android (Google Play). Une application de lecture, un mot à la fois.">
+<meta property="og:url" content="https://parfocal.fr/app/">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:image" content="https://parfocal.fr/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The ParFocal icon: a white lens around a red dot, on a red-to-black gradient.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../favicon.png" sizes="any">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="stylesheet" href="../_style.css">
+<script>
+  // ─────────────────────────────────────────────────────────────────────────
+  // The two lines to change. Everything else on this page follows from them.
+  //
+  //   IOS_DESTINATION
+  //     "https://testflight.apple.com/join/XXXX"   → iPhone beta
+  //     "https://apps.apple.com/app/idXXXXXXXXX"   → iPhone public launch
+  //   ANDROID_DESTINATION
+  //     ""                                          → Android « bientôt » card
+  //     "https://play.google.com/apps/testing/com.pavass.parfocal" → Android beta (opt-in)
+  //     "https://play.google.com/store/apps/details?id=com.pavass.parfocal" → Android launch
+  //
+  // parfocal.fr/app is the only address ever printed, shared or encoded in a
+  // QR code. A phone is sent to its own store; a computer sees both choices.
+  // An already-printed QR keeps working on both platforms.
+  // ─────────────────────────────────────────────────────────────────────────
+  var IOS_DESTINATION = "https://testflight.apple.com/join/dW6gZmTW";
+  var ANDROID_DESTINATION = "";
+
+  var ua = navigator.userAgent || "";
+  var isAndroid = /android/i.test(ua);
+  var isIOS = /iphone|ipad|ipod/i.test(ua) ||
+    (/macintosh/i.test(ua) && navigator.maxTouchPoints > 1); // iPadOS reports as a Mac
+  if (isIOS && IOS_DESTINATION) { window.location.replace(IOS_DESTINATION); }
+  if (isAndroid && ANDROID_DESTINATION) { window.location.replace(ANDROID_DESTINATION); }
+  document.documentElement.className = isAndroid ? "is-android" : (isIOS ? "is-ios" : "");
+</script>
+<style>
+  .choice { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 0 0 24px; }
+  .choice > div { background: var(--surface); border-radius: 16px; padding: 20px; }
+  .choice h2 { margin-top: 0; }
+  .android-ready { display: none; }
+  @media (max-width: 520px) { .choice { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<main>
+  <p class="brand">ParFocal<span>.</span></p>
+  <p class="tagline">One word at a time.</p>
+
+  <h1>Installer ParFocal</h1>
+
+  <div class="lede">
+    <p><strong>La bêta de ParFocal est ouverte.</strong> Sur un téléphone, ce
+    lien vous envoie directement au bon endroit. Si rien ne se passe, choisissez
+    ci-dessous. Passez toujours par ce lien, pas par une recherche dans le
+    magasin : d'autres apps aux noms proches n'ont rien à voir avec ParFocal.</p>
+  </div>
+
+  <div class="choice">
+    <div>
+      <h2>iPhone</h2>
+      <p>Via TestFlight, l'app d'Apple pour les versions de test. Installez
+      TestFlight si on vous le propose, puis ParFocal.</p>
+      <a class="btn" id="ios-link" href="https://testflight.apple.com/join/dW6gZmTW">Installer sur iPhone</a>
+    </div>
+    <div>
+      <h2>Android</h2>
+      <p class="android-ready">Via Google Play. Acceptez de devenir testeur,
+      puis installez ParFocal depuis Google Play.</p>
+      <a class="btn android-ready" id="android-link" href="#">Installer sur Android</a>
+      <p class="android-soon">La bêta Android ouvre très bientôt. Écrivez à
+      <a href="mailto:contact@parfocal.fr?subject=B%C3%AAta%20Android">contact@parfocal.fr</a>
+      pour être prévenu dès qu'elle est prête.</p>
+    </div>
+  </div>
+  <script>
+    document.getElementById("ios-link").href = IOS_DESTINATION;
+    if (ANDROID_DESTINATION) {
+      document.getElementById("android-link").href = ANDROID_DESTINATION;
+      var r = document.querySelectorAll(".android-ready");
+      for (var i = 0; i < r.length; i++) { r[i].style.display = "block"; }
+      document.querySelector(".android-soon").style.display = "none";
+    }
+  </script>
+
+  <h2>Vous avez reçu un lien ou un QR code ?</h2>
+  <p>Il pointe vers cette page, et c'est voulu. Le lien ne change jamais —
+  seule sa destination change : les bêtas TestFlight et Google Play aujourd'hui,
+  l'App Store et le Play Store ensuite. Un QR code imprimé aujourd'hui fonctionnera encore après la
+  publication.</p>
+
+  <hr>
+  <footer>
+    <p><a href="../aide.html">Aide</a> ·
+    <a href="../confidentialite.html">Confidentialité</a> ·
+    <a href="../conditions.html">Conditions</a> ·
+    <a href="../mentions-legales.html">Mentions légales</a></p>
+    <p>ParFocal — un projet indépendant.</p>
+  </footer>
+</main>
+</body>
+</html>

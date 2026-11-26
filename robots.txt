@@ -1,0 +1,10 @@
+# parfocal.fr
+# Crawling is open, including /app/, the beta install link.
+#
+# No Sitemap line yet — a sitemap is worth having once there are pages worth
+# finding. Today the site is legal and support text reached from inside the
+# app, so there is nothing for a crawler to discover that a reader has not
+# already been handed. Add one in Phase 2 with the product pages.
+
+User-agent: *
+Allow: /
